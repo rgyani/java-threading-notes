@@ -191,3 +191,30 @@ try{
 
 ### Blocking Queue
 A blocking queue is a queue that blocks when you try to dequeue from it and the queue is empty, or if you try to enqueue items to it and the queue is already full. A thread trying to dequeue from an empty queue is blocked until some other thread inserts an item into the queue. A thread trying to enqueue an item in a full queue is blocked until some other thread makes space in the queue, either by dequeuing one or more items or clearing the queue completely.
+
+
+### Is Java a compiled or an interpreted language?
+
+The answer to this question lies in the fact that the Java Virtual Machine (JVM) converts Java code to platform-independent bytecode, which is then converted to machine code in binary form with the help of the Just-in-Time (JIT) compiler. We can say that Java uses both approaches to run its programs. The JIT compiler is a part of the JVM that improves performance by compiling bytecode to native code for repeated method calls. This shows the close relationship between the JVM and JIT compiler. Let us briefly explain what JVM and JIT are and then move on to see the differences between them.
+
+
+#### JVM
+The Java Virtual Machine is an abstract computing and virtual machine interface that drives the java code. It is a part of the Java Runtime Environment (JRE) that compiles bytecode into machine code for program execution by the CPU. Bytecode entering the JVM undergoes three phases after which it is compiled to machine code.
+* Loading: The referenced classes or methods are loaded using the class loader.
+ * Verifying: The bytecode verifier checks the bytecode for instructions that may cause any harm for the present or future executions.
+ * Initialisation and conversion: All static variables are assigned their values defined in the code or static block. Finally, the JIT plays its role by compiling the bytecode to machine code.
+
+#### JIT
+As mentioned before, the JIT compiler compiles bytecode to machine code “just-in-time” for it to run. By default, the JIT compiler is enabled and is activated on the calling of a Java method. It can be disabled to check and diagnose Java compilation problems. For other reasons, it is not recommended as it may slow down your code by running it in interpreter-only mode. The JIT compiler helps optimise and maximise the performance of complex Java programs without consuming processor time and memory space. It also keeps track of operational data during runtime, which can be used to improve future recompilations.
+
+#### How does it work with the JVM?
+The differences between the JVM and JIT can be highlighted while discussing the coordination between them during Java program execution.
+
+The first time a method is called, it’s not compiled. For every method, JVM maintains a count to keep track of the number of times that method is called. It interprets the method until the count reaches a JIT compilation threshold. 
+
+After the method is compiled, subsequent calls to the method are counted and upon reaching the JIT compilation threshold, JIT compiles the method a second time implementing more optimisations to increase performance. This is repeated until maximum optimisation level is attained
+
+#### How does the JRE play a role in executing a java program?
+
+The Java Runtime Environment provides a platform to run and execute the source code. It contains the JVM and provides the libraries to execute the program. The JVM, in turn, contains the JIT compiler. The JRE is a minimum requirement to run Java applications on any computer. It is platform-dependent.
+
